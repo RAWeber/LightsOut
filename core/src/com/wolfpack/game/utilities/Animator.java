@@ -9,24 +9,16 @@ import com.wolfpack.game.GameApp;
 
 public class Animator {
 
-    private int cols;
-    private int rows;
-    private String imageName;  
-    private int frameRate;
     private Vector2 position;
-
     private Animation walkAnimation;          
     private Texture walkSheet;             
     private TextureRegion[] walkFrames;                   
     private TextureRegion currentFrame;           
-
-    private float stateTime;                                      
+    private float stateTime;     
+    
     public Animator(String imageName, Vector2 position, int cols, int rows, int frameRate)
     {
-        this.cols = cols;
-        this.rows = rows;
-        this.imageName = imageName;
-        this.frameRate = frameRate;
+       
         this.position = position;
 
         walkSheet = GameApp.getAssetManager().get(imageName, Texture.class); 
