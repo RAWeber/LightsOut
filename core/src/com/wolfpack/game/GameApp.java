@@ -1,33 +1,43 @@
 package com.wolfpack.game;
 
-import com.badlogic.gdx.ApplicationAdapter;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.graphics.GL20;
+import com.badlogic.gdx.Game;
+import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.wolfpack.game.screens.LoadScreen;
 
-public class GameApp extends ApplicationAdapter {
-	SpriteBatch batch;
-	Texture img;
-	
-	@Override
-	public void create () {
-		batch = new SpriteBatch();
-		img = new Texture("badlogic.jpg");
-	}
+public class GameApp extends Game {
+  private static SpriteBatch batch;
+  private static AssetManager manager;
 
-	@Override
-	public void render () {
-		Gdx.gl.glClearColor(1, 0, 0, 1);
-		Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-		batch.begin();
-		batch.draw(img, 0, 0);
-		batch.end();
-	}
-	
-	@Override
-	public void dispose () {
-		batch.dispose();
-		img.dispose();
-	}
+  @Override
+  public void create() {
+    manager = new AssetManager();
+    batch = new SpriteBatch();
+    manager.load("Flame.png", Texture.class);
+    manager.load("Bloody Spike.png", Texture.class);
+
+    this.setScreen(new LoadScreen(this));
+  }
+
+  @Override
+  public void render() {
+    super.render();
+    manager.update();
+  }
+
+  @Override
+  public void dispose() {
+    batch.dispose();
+    manager.dispose();
+  }
+
+  public static SpriteBatch getSpritebatch() {
+    return batch;
+  }
+  
+  public static AssetManager getAssetManager() {
+    return manager;
+  }
 }
+
