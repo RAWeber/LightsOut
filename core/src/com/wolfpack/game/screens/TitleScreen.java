@@ -50,6 +50,7 @@ public class TitleScreen implements Screen {
 
     layout.setText(font, startText);
     startWidth = layout.width;
+    
     titlePosition = new Vector2(camera.viewportWidth / 2 - 512, camera.viewportHeight / 2 - 512);
     title = new Animator("Lights Out Logo.png", titlePosition, 3, 4, 2);
 
