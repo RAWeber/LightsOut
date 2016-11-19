@@ -3,7 +3,6 @@ package com.wolfpack.game.screens;
 
 
 import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
@@ -37,7 +36,7 @@ public class GameScreen implements Screen {
     font.getData().setScale(1.5f);
     scoreText =  "";
     camera = new OrthographicCamera();
-    camera.setToOrtho(false, 1280, 720);
+    camera.setToOrtho(false, GameApp.WIDTH, GameApp.HEIGHT);
     
     player = new Player(new Rectangle(100, 100, 100, 200), 20);
     background = new Background();

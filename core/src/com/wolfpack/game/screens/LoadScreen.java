@@ -28,7 +28,7 @@ public class LoadScreen implements Screen {
     this.game = game;
 
     camera = new OrthographicCamera();
-    camera.setToOrtho(false, 1280, 720);
+    camera.setToOrtho(false, GameApp.WIDTH, GameApp.HEIGHT);
 
     font = new BitmapFont();
     font.getData().setScale(1.5f);

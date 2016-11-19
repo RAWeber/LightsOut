@@ -8,7 +8,6 @@ import com.wolfpack.game.utilities.Animator;
 public class Player {
 
   private Rectangle hitbox;
-  private float speed;
   private Animator animation;
 
   private float originalY;
@@ -17,7 +16,6 @@ public class Player {
 
   public Player(Rectangle hitbox, float speed) {
     this.hitbox = hitbox;
-    this.speed = speed;
 
     originalY = hitbox.y;
     jump = 0;
@@ -48,9 +46,6 @@ public class Player {
       }
     }
     
-    /*if(hitbox.x < Gdx.graphics.getWidth() * 2 / 3) {
-      hitbox.setX(hitbox.x + Gdx.graphics.getDeltaTime() * speed);
-    }*/
     animation.setPosition(hitbox.getPosition(new Vector2()));
     animation.render();
     

@@ -21,7 +21,6 @@ public class TitleScreen implements Screen {
   private String startText;
   private float titleWidth;
   private float titleHeight;
-  private float startWidth;
   
   private Texture wolfpack;
   
@@ -38,7 +37,7 @@ public class TitleScreen implements Screen {
     this.game = game;
 
     camera = new OrthographicCamera();
-    camera.setToOrtho(false, 1280, 720);
+    camera.setToOrtho(false, GameApp.WIDTH, GameApp.HEIGHT);
 
     font = new BitmapFont();
     font.getData().setScale(1.5f);
@@ -51,7 +50,6 @@ public class TitleScreen implements Screen {
     titleHeight = layout.height;
 
     layout.setText(font, startText);
-    startWidth = layout.width;
     
     titlePosition = new Vector2(camera.viewportWidth / 2 - 512, camera.viewportHeight / 2 - 512);
     title = new Animator("Lights Out Logo.png", titlePosition, 3, 4, 2);

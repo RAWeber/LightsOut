@@ -31,7 +31,7 @@ public class GameOverScreen implements Screen {
     this.game = game;
 
     camera = new OrthographicCamera();
-    camera.setToOrtho(false, 1280, 720);
+    camera.setToOrtho(false, GameApp.WIDTH, GameApp.HEIGHT);
     titlePosition = new Vector2(camera.viewportWidth / 2 - 320, camera.viewportHeight/2 - 320);
     title = new Animator("GameOver.png", titlePosition, 1, 2, 1);
     scoreText = "Score: " + score;

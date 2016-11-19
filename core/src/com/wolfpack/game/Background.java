@@ -9,24 +9,20 @@ public class Background {
   
   private Texture background;
   private float offset;
-  private float height;
-  private float width;
   
   public Background(){
     background = GameApp.getAssetManager().get("Background.png", Texture.class);
     offset = 0;
-    height = Gdx.graphics.getHeight();
-    width = Gdx.graphics.getWidth();
   }
 
   public void render(){
     offset += Gdx.graphics.getDeltaTime() * speed;
     
-    if(offset >= width){
+    if(offset >= GameApp.WIDTH){
       offset = 0;
     }
       
     GameApp.getSpritebatch().draw(background, -offset, 0);
-    GameApp.getSpritebatch().draw(background, width - offset, 0);
+    GameApp.getSpritebatch().draw(background, GameApp.WIDTH - offset, 0);
   }
 }

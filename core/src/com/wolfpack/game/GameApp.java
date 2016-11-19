@@ -9,8 +9,8 @@ import com.wolfpack.game.screens.LoadScreen;
 public class GameApp extends Game {
   private static SpriteBatch batch;
   private static AssetManager manager;
-  private static final int WIDTH = 1280;
-  private static final int HEIGHT = 720;
+  public static final int WIDTH = 1280;
+  public static final int HEIGHT = 720;
 
   @Override
   public void create() {

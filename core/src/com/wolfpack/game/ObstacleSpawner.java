@@ -28,7 +28,7 @@ public class ObstacleSpawner {
   }
   
   private void spawnObstacle(){
-    obstacles.add(new Obstacle("Spike", new Rectangle(Gdx.graphics.getWidth() + 40, 40, 80, 80)));
+    obstacles.add(new Obstacle("Spike", new Rectangle(GameApp.WIDTH + 40, 40, 80, 80)));
   }
   
   public void render(){
