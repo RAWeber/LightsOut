@@ -14,8 +14,11 @@ public class GameApp extends Game {
   public void create() {
     manager = new AssetManager();
     batch = new SpriteBatch();
+    manager.load("Lights Out Logo.png", Texture.class);
     manager.load("Flame.png", Texture.class);
     manager.load("Bloody Spike.png", Texture.class);
+    manager.load("Protagonist V1.png",Texture.class);
+    manager.load("Boulder.png",Texture.class);
 
     this.setScreen(new LoadScreen(this));
   }
