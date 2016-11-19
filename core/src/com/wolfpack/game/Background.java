@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Background {
   
+  public static float speed = 400;
+  
   private Texture background;
   private float offset;
   private float height;
@@ -18,7 +20,7 @@ public class Background {
   }
 
   public void render(){
-    offset += Gdx.graphics.getDeltaTime() * 200;
+    offset += Gdx.graphics.getDeltaTime() * speed;
     
     if(offset >= width){
       offset = 0;

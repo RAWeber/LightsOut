@@ -12,6 +12,7 @@ import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Rectangle;
 import com.wolfpack.game.Background;
 import com.wolfpack.game.GameApp;
+import com.wolfpack.game.ObstacleSpawner;
 import com.wolfpack.game.Player;
 
 public class GameScreen implements Screen {
@@ -38,7 +39,7 @@ public class GameScreen implements Screen {
     camera = new OrthographicCamera();
     camera.setToOrtho(false, 1280, 720);
     
-    player = new Player(new Rectangle(100, 100, 100, 200), 10);
+    player = new Player(new Rectangle(100, 100, 100, 200), 20);
     background = new Background();
     score = 0;
     startTime = System.currentTimeMillis();
@@ -53,7 +54,7 @@ public class GameScreen implements Screen {
   @Override
   public void render(float delta) {
     
-    Gdx.gl.glClearColor(0, 0, 0.2f, 1);
+    Gdx.gl.glClearColor(0.086f, 0.047f, 0.012f, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     endTime = System.currentTimeMillis();
     score = (int)((endTime - startTime)/100);
@@ -69,14 +70,16 @@ public class GameScreen implements Screen {
  
     GameApp.getSpritebatch().begin();
     
-    
-    background.render();
     player.render();
+    ObstacleSpawner.getInstance().render();
+    background.render();
+
     font.draw(GameApp.getSpritebatch(), scoreText, camera.viewportWidth / 2 - scoreWidth / 2,
     		 scoreHeight / 2 + 20);
+
     GameApp.getSpritebatch().end();
     
-    if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+    if(player.isDead())
     {
     	
     	game.setScreen(new GameOverScreen(game,score));

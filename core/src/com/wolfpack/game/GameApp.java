@@ -22,7 +22,8 @@ public class GameApp extends Game {
     manager.load("Boulder.png",Texture.class);
     manager.load("Background.png", Texture.class);
     manager.load("wolfpack.png",Texture.class);
-
+    manager.load("Spike.png", Texture.class);
+    manager.load("badlogic.jpg", Texture.class);
 
     this.setScreen(new LoadScreen(this));
   }
