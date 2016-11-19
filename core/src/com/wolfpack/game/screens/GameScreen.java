@@ -28,7 +28,7 @@ public class GameScreen implements Screen {
     camera = new OrthographicCamera();
     camera.setToOrtho(false, 1280, 720);
     
-    player = new Player(new Rectangle(100, 100, 100, 200), 10);
+    player = new Player(new Rectangle(100, 100, 100, 200), 20);
     background = new Background();
     score = 0;
     startTime = System.currentTimeMillis();
@@ -50,12 +50,13 @@ public class GameScreen implements Screen {
     GameApp.getSpritebatch().setProjectionMatrix(camera.combined);
     
     GameApp.getSpritebatch().begin();
+    player.render();
     ObstacleSpawner.getInstance().render();
     background.render();
-    player.render();
+
     GameApp.getSpritebatch().end();
     
-    if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+    if(player.isDead())
     {
     	endTime = System.currentTimeMillis();
     	score = (int)((endTime - startTime)/10);

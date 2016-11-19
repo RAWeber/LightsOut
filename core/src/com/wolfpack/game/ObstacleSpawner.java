@@ -11,35 +11,39 @@ public class ObstacleSpawner {
   private static ObstacleSpawner instance;
 
   private Random rand;
-  private int spawnChance;
+  private float variance;
   private ArrayList<Obstacle> obstacles;
+  private ArrayList<Obstacle> obstaclesToRemove;
   
   private float spawnDelay;
   private float currentTime;
   
   private ObstacleSpawner(){
     obstacles = new ArrayList<Obstacle>();
+    obstaclesToRemove = new ArrayList<Obstacle>();
     rand = new Random();
-    spawnChance = 25;
-    spawnDelay = 1000;
+    variance = 2;
+    spawnDelay = 1.5f;
     currentTime = 0;
   }
   
   private void spawnObstacle(){
-    obstacles.add(new Obstacle("Spike", new Rectangle()));
+    obstacles.add(new Obstacle("Spike", new Rectangle(Gdx.graphics.getWidth() + 40, 40, 80, 80)));
   }
   
   public void render(){
     currentTime += Gdx.graphics.getDeltaTime();
     
-    if(currentTime > spawnDelay && rand.nextInt(100) > spawnChance){
-      spawnObstacle();
+    if(currentTime > spawnDelay + rand.nextFloat() * variance){
+        spawnObstacle();
       currentTime = 0;
     }
     
     for(Obstacle o: obstacles){
       o.render();
+      obstaclesToRemove.add(o);
     }
+    obstacles.remove(obstaclesToRemove);
   }
   
   public static ObstacleSpawner getInstance(){
@@ -49,15 +53,11 @@ public class ObstacleSpawner {
     return instance;
   }
   
+  public static void clear(){
+    instance = null;
+  }
+  
   public ArrayList<Obstacle> getObstacles(){
     return obstacles;
-  }
-  
-  public void setSpawnChance(int spawnChance){
-    this.spawnChance = spawnChance;
-  }
-  
-  public int getSpawnChacne(){
-    return spawnChance;
   }
 }
