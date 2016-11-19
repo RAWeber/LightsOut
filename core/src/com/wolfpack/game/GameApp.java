@@ -19,6 +19,7 @@ public class GameApp extends Game {
     manager.load("Bloody Spike.png", Texture.class);
     manager.load("Protagonist V1.png",Texture.class);
     manager.load("Boulder.png",Texture.class);
+    manager.load("Background.png", Texture.class);
 
 
     this.setScreen(new LoadScreen(this));

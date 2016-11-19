@@ -33,7 +33,7 @@ public class Player {
         }
       }
       else if (Gdx.input.justTouched()) {
-        jump = 100;
+        jump = 200;
       }
     }
     
@@ -45,7 +45,10 @@ public class Player {
         jump = 0;
       }
     }
-    hitbox.setX(hitbox.x + Gdx.graphics.getDeltaTime() * speed);
+    
+    if(hitbox.x < Gdx.graphics.getWidth() * 2 / 3) {
+      hitbox.setX(hitbox.x + Gdx.graphics.getDeltaTime() * speed);
+    }
     animation.setPosition(hitbox.getPosition(new Vector2()));
     animation.render();
   }
