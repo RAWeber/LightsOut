@@ -9,6 +9,8 @@ import com.wolfpack.game.screens.LoadScreen;
 public class GameApp extends Game {
   private static SpriteBatch batch;
   private static AssetManager manager;
+  private static final int WIDTH = 1280;
+  private static final int HEIGHT = 720;
 
   @Override
   public void create() {
@@ -22,7 +24,6 @@ public class GameApp extends Game {
     manager.load("Boulder.png",Texture.class);
     manager.load("Background.png", Texture.class);
     manager.load("Spike.png", Texture.class);
-    manager.load("badlogic.jpg", Texture.class);
 
     this.setScreen(new LoadScreen(this));
   }
