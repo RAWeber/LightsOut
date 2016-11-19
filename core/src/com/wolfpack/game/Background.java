@@ -5,6 +5,8 @@ import com.badlogic.gdx.graphics.Texture;
 
 public class Background {
   
+  public static float speed = 200;
+  
   private Texture background;
   private float offset;
   private float height;
