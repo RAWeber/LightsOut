@@ -16,6 +16,7 @@ public class GameApp extends Game {
     batch = new SpriteBatch();
     manager.load("Flame.png", Texture.class);
     manager.load("Bloody Spike.png", Texture.class);
+    manager.load("Protagonist V1.png", Texture.class);
 
     this.setScreen(new LoadScreen(this));
   }
@@ -23,7 +24,6 @@ public class GameApp extends Game {
   @Override
   public void render() {
     super.render();
-    manager.update();
   }
 
   @Override

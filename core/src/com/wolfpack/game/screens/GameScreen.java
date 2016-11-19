@@ -5,18 +5,24 @@ import com.badlogic.gdx.Input;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.math.Rectangle;
+import com.badlogic.gdx.math.Vector2;
 import com.wolfpack.game.GameApp;
+import com.wolfpack.game.Player;
 
 public class GameScreen implements Screen {
 
   private final GameApp game;
   private OrthographicCamera camera;
+  private Player player;
 
   public GameScreen(GameApp game) {
     this.game = game;
 
     camera = new OrthographicCamera();
     camera.setToOrtho(false, 1280, 720);
+    
+    player = new Player(new Rectangle(100, 100, 100, 200), 10);
   }
 
   @Override
@@ -36,6 +42,7 @@ public class GameScreen implements Screen {
     
     GameApp.getSpritebatch().begin();
     //Render in here
+    player.render();
     GameApp.getSpritebatch().end();
     
     if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
