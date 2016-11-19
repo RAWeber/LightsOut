@@ -25,7 +25,8 @@ public class TitleScreen implements Screen {
   
   private Animator title;
   private Vector2 titlePosition;
-
+  
+  
   /**
    * Constructor for TitleScreen.
    * 
