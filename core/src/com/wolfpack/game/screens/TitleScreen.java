@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.wolfpack.game.GameApp;
@@ -19,6 +20,8 @@ public class TitleScreen implements Screen {
   private float titleWidth;
   private float titleHeight;
   private float startWidth;
+  
+  private Texture title;
 
   /**
    * Constructor for TitleScreen.
@@ -43,6 +46,8 @@ public class TitleScreen implements Screen {
 
     layout.setText(font, startText);
     startWidth = layout.width;
+    
+    title = GameApp.getAssetManager().get("Lights Out Logo.png", Texture.class);
 
   }
 
@@ -61,10 +66,11 @@ public class TitleScreen implements Screen {
     GameApp.getSpritebatch().setProjectionMatrix(camera.combined);
     
     GameApp.getSpritebatch().begin();
-    font.draw(GameApp.getSpritebatch(), titleText, camera.viewportWidth / 2 - titleWidth / 2,
-        camera.viewportHeight / 2 + titleHeight / 2 + 5);
-    font.draw(GameApp.getSpritebatch(), startText, camera.viewportWidth / 2 - startWidth / 2,
-        camera.viewportHeight / 2 - titleHeight / 2 - 5);
+    GameApp.getSpritebatch().draw(title,0,0);
+    //font.draw(GameApp.getSpritebatch(), titleText, camera.viewportWidth / 2 - titleWidth / 2,
+        //camera.viewportHeight / 2 + titleHeight / 2 + 5);
+   // font.draw(GameApp.getSpritebatch(), startText, camera.viewportWidth / 2 - startWidth / 2,
+       // camera.viewportHeight / 2 - titleHeight / 2 - 5);
     GameApp.getSpritebatch().end();
     
     if (Gdx.input.isTouched()) {
