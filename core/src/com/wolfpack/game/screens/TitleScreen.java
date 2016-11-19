@@ -73,7 +73,7 @@ public class TitleScreen implements Screen {
        // camera.viewportHeight / 2 - titleHeight / 2 - 5);
     GameApp.getSpritebatch().end();
     
-    if (Gdx.input.isTouched()) {
+    if (Gdx.input.justTouched()) {
       game.setScreen(new GameScreen(game));
       dispose();
     }

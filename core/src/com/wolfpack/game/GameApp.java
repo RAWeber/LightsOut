@@ -20,13 +20,13 @@ public class GameApp extends Game {
     manager.load("Protagonist V1.png",Texture.class);
     manager.load("Boulder.png",Texture.class);
 
+
     this.setScreen(new LoadScreen(this));
   }
 
   @Override
   public void render() {
     super.render();
-    manager.update();
   }
 
   @Override
