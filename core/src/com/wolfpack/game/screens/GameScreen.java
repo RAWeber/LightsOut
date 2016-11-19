@@ -8,6 +8,7 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.math.Rectangle;
 import com.wolfpack.game.Background;
 import com.wolfpack.game.GameApp;
+import com.wolfpack.game.ObstacleSpawner;
 import com.wolfpack.game.Player;
 
 public class GameScreen implements Screen {
@@ -36,13 +37,14 @@ public class GameScreen implements Screen {
   @Override
   public void render(float delta) {
     
-    Gdx.gl.glClearColor(0, 0, 0.2f, 1);
+    Gdx.gl.glClearColor(0.086f, 0.047f, 0.012f, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
     
     camera.update();
     GameApp.getSpritebatch().setProjectionMatrix(camera.combined);
     
     GameApp.getSpritebatch().begin();
+    ObstacleSpawner.getInstance().render();
     background.render();
     player.render();
     GameApp.getSpritebatch().end();
