@@ -7,7 +7,9 @@ import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.math.Vector2;
 import com.wolfpack.game.GameApp;
+import com.wolfpack.game.utilities.Animator;
 
 public class TitleScreen implements Screen {
 
@@ -21,7 +23,8 @@ public class TitleScreen implements Screen {
   private float titleHeight;
   private float startWidth;
   
-  private Texture title;
+  private Animator title;
+  private Vector2 titlePosition;
 
   /**
    * Constructor for TitleScreen.
@@ -46,8 +49,9 @@ public class TitleScreen implements Screen {
 
     layout.setText(font, startText);
     startWidth = layout.width;
-    
-    title = GameApp.getAssetManager().get("Lights Out Logo.png", Texture.class);
+    titlePosition = new Vector2(camera.viewportWidth / 2 - 512, camera.viewportHeight / 2 - 512);
+    title = new Animator("Lights Out Logo.png", titlePosition, 3, 4, 2);
+
 
   }
 
@@ -65,8 +69,9 @@ public class TitleScreen implements Screen {
     camera.update();
     GameApp.getSpritebatch().setProjectionMatrix(camera.combined);
     
+    
     GameApp.getSpritebatch().begin();
-    GameApp.getSpritebatch().draw(title,0,0);
+    title.render();
     //font.draw(GameApp.getSpritebatch(), titleText, camera.viewportWidth / 2 - titleWidth / 2,
         //camera.viewportHeight / 2 + titleHeight / 2 + 5);
    // font.draw(GameApp.getSpritebatch(), startText, camera.viewportWidth / 2 - startWidth / 2,
