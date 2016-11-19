@@ -18,8 +18,6 @@ public class GameScreen implements Screen {
 
   private final GameApp game;
   private OrthographicCamera camera;
-  private Player player;
-  private Background background;
   
   private int score;
   private float scoreWidth;
@@ -38,8 +36,6 @@ public class GameScreen implements Screen {
     camera = new OrthographicCamera();
     camera.setToOrtho(false, GameApp.WIDTH, GameApp.HEIGHT);
     
-    player = new Player(new Rectangle(100, 100, 100, 200), 20);
-    background = new Background();
     score = 0;
     startTime = System.currentTimeMillis();
   }
@@ -55,32 +51,37 @@ public class GameScreen implements Screen {
     
     Gdx.gl.glClearColor(0.086f, 0.047f, 0.012f, 1);
     Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
-    endTime = System.currentTimeMillis();
-    score = (int)((endTime - startTime)/100);
-    scoreText = "Score: " + score;
-    GlyphLayout layout = new GlyphLayout();
-    layout.setText(font, scoreText);
-    scoreWidth = layout.width;
-    scoreHeight = layout.height;
     
     camera.update();
     GameApp.getSpritebatch().setProjectionMatrix(camera.combined);
     
- 
+    if(!Player.getInstance().isDead()){
+      endTime = System.currentTimeMillis();
+      score = (int)((endTime - startTime)/100);
+      scoreText = "Score: " + score;
+      
+      GlyphLayout layout = new GlyphLayout();
+      layout.setText(font, scoreText);
+      scoreWidth = layout.width;
+      scoreHeight = layout.height;
+    }
+      
     GameApp.getSpritebatch().begin();
     
-    player.render();
+    Player.getInstance().render();
     ObstacleSpawner.getInstance().render();
-    background.render();
+    Background.getInstance().render();
 
     font.draw(GameApp.getSpritebatch(), scoreText, camera.viewportWidth / 2 - scoreWidth / 2,
-    		 scoreHeight / 2 + 20);
+             scoreHeight / 2 + 20);
 
     GameApp.getSpritebatch().end();
-    
-    if(player.isDead())
+
+    if(Player.getInstance().isOffScreen())
     {
-    	
+        Background.clear();
+        ObstacleSpawner.clear();
+        Player.clear();
     	game.setScreen(new GameOverScreen(game,score));
     	dispose();
     }
