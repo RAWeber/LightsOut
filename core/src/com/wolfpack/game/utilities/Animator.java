@@ -14,13 +14,32 @@ public class Animator {
     private Texture walkSheet;             
     private TextureRegion[] walkFrames;                   
     private TextureRegion currentFrame;           
-    private float stateTime;     
+    private float stateTime; 
+    private boolean loop;
     
     public Animator(String imageName, Vector2 position, int cols, int rows, int frameRate)
     {
        
         this.position = position;
+        loop = true;
+        walkSheet = GameApp.getAssetManager().get(imageName, Texture.class); 
+        TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth()/cols, walkSheet.getHeight()/rows);              // #10
+        walkFrames = new TextureRegion[cols * rows];
+        int index = 0;
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                walkFrames[index++] = tmp[i][j];
+            }
+        }
+        walkAnimation = new Animation(1.0f/frameRate, walkFrames);                     
+        stateTime = 0f; 
 
+    }
+    public Animator(String imageName, Vector2 position, int cols, int rows, int frameRate, boolean loop)
+    {
+       
+        this.position = position;
+        this.loop = loop;
         walkSheet = GameApp.getAssetManager().get(imageName, Texture.class); 
         TextureRegion[][] tmp = TextureRegion.split(walkSheet, walkSheet.getWidth()/cols, walkSheet.getHeight()/rows);              // #10
         walkFrames = new TextureRegion[cols * rows];
@@ -41,7 +60,7 @@ public class Animator {
   
     public void render() {
         stateTime += Gdx.graphics.getDeltaTime();        
-        currentFrame = walkAnimation.getKeyFrame(stateTime, true);  
+        currentFrame = walkAnimation.getKeyFrame(stateTime, loop);  
         GameApp.getSpritebatch().draw(currentFrame, position.x, position.y);             
      
     }
