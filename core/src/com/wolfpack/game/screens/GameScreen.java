@@ -16,6 +16,10 @@ public class GameScreen implements Screen {
   private OrthographicCamera camera;
   private Player player;
   private Background background;
+  
+  private int score;
+  private long startTime;
+  private long endTime; 
 
   public GameScreen(GameApp game) {
     this.game = game;
@@ -25,6 +29,8 @@ public class GameScreen implements Screen {
     
     player = new Player(new Rectangle(100, 100, 100, 200), 10);
     background = new Background();
+    score = 0;
+    startTime = System.currentTimeMillis();
   }
 
   @Override
@@ -47,9 +53,12 @@ public class GameScreen implements Screen {
     player.render();
     GameApp.getSpritebatch().end();
     
-    if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
-      game.setScreen(new GameOverScreen(game));
-      dispose();
+    if(Gdx.input.isKeyJustPressed(Input.Keys.ENTER))
+    {
+    	endTime = System.currentTimeMillis();
+    	score = (int)((endTime - startTime)/10);
+    	game.setScreen(new GameOverScreen(game,score));
+    	dispose();
     }
   }
 

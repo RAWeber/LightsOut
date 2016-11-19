@@ -15,6 +15,7 @@ public class GameApp extends Game {
     manager = new AssetManager();
     batch = new SpriteBatch();
     manager.load("Lights Out Logo.png", Texture.class);
+    manager.load("GameOver.png", Texture.class);
     manager.load("Flame.png", Texture.class);
     manager.load("Bloody Spike.png", Texture.class);
     manager.load("Protagonist V1.png",Texture.class);
