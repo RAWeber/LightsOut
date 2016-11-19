@@ -42,6 +42,10 @@ public class Animator {
         stateTime = 0f; 
 
     }
+    public void setPosition(Vector2 position)
+    {
+    	this.position = position;
+    }
   
     public void render() {
         stateTime += Gdx.graphics.getDeltaTime();        
