@@ -4,6 +4,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Screen;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.math.Vector2;
@@ -22,6 +23,8 @@ public class TitleScreen implements Screen {
   private float titleHeight;
   private float startWidth;
   
+  private Texture wolfpack;
+  
   private Animator title;
   private Vector2 titlePosition;
   
@@ -39,7 +42,7 @@ public class TitleScreen implements Screen {
 
     font = new BitmapFont();
     font.getData().setScale(1.5f);
-    titleText = "Welcome to Lights Out!!!";
+    titleText = "Robert Weber and Jon Scott - 11/19/2016";
     startText = "Click the screen to begin";
 
     GlyphLayout layout = new GlyphLayout();
@@ -52,6 +55,8 @@ public class TitleScreen implements Screen {
     
     titlePosition = new Vector2(camera.viewportWidth / 2 - 512, camera.viewportHeight / 2 - 512);
     title = new Animator("Lights Out Logo.png", titlePosition, 3, 4, 2);
+    
+    wolfpack = GameApp.getAssetManager().get("wolfpack.png",Texture.class);
 
 
   }
@@ -73,6 +78,10 @@ public class TitleScreen implements Screen {
     
     GameApp.getSpritebatch().begin();
     title.render();
+    font.draw(GameApp.getSpritebatch(), titleText, camera.viewportWidth - titleWidth,
+       titleHeight / 2 + 20);
+    GameApp.getSpritebatch().draw(wolfpack, 0, 0);
+
     GameApp.getSpritebatch().end();
     
     if (Gdx.input.justTouched()) {
